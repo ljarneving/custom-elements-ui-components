@@ -12,7 +12,9 @@ const STYLE = `
         --padding-bottom:0.5rem;
     }
     .wrapper {
-        background-color:#ddd; /* Background color of the custom element */
+        background-color: #d4d4d42d; /* Background color of the custom element */
+        border:1pt solid #ccc;
+        border-radius: .5rem .5rem 0 0;
         box-sizing:border-box;
         display:flex;
         flex-direction:column;
@@ -51,8 +53,8 @@ const STYLE = `
         outline:none;
     }
     .outline {
-        background-color:none;
-        height:.2rem;
+        background-color:gray;
+        height:.1rem;
         width:100%;
     }
     input:active ~ .outline, input:focus ~ .outline, input:not(:placeholder-shown) ~ .outline {
@@ -88,6 +90,7 @@ export default class UiInput extends HTMLElement {
             const value = this.getAttribute(attribute)
             if(attribute === "placeholder") {
                 this.shadowRoot.querySelector("label").textContent = value
+                this.setAttribute("aria-label", value)
                 return this.shadowRoot.querySelector("input").placeholder = value
             }
             if(attribute === "message") {
